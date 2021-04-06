@@ -1,0 +1,207 @@
+body {
+    background-color: rgba(202, 202, 202, 0.596);
+    background-blend-mode: color;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    position: relative;
+    /* Hide vertical scrollbar */
+}
+
+nav {
+    position: sticky;
+    top: 0;
+}
+
+#navImage {
+    background-color: #14141477;
+    margin-top: 0px;
+    margin-bottom: 1px;
+    min-height: 350px;
+    font-weight: bold;
+    background-image: linear-gradient(to bottom, rgba(94, 94, 94, 0.52), rgba(231, 139, 86, 0.349)), url("https://www.bravenboerprojects.nl/wp-content/uploads/2018/08/CF003078-1xlarge.1531308117.jpg");
+    background-size: cover;
+    background-position: 0px 55%;
+    background-blend-mode: color;
+    clip-path: polygon(0 0, 100% 0, 100% 74%, 75% 59%, 25% 59%, 0 74%);
+    top: 0;
+    z-index: 9998;
+    position: sticky;
+    font-family: 'Noto Sans JP', sans-serif;
+    filter: grayscale(70%);
+}
+
+#nav_text_1 {
+    color: white;
+}
+
+.nav-link {
+    background-color: rgba(61, 61, 61, 0.623);
+    border-radius: 5px;
+    margin-right: 25px;
+}
+
+.card-header {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.144), 0 15px 12px rgba(0, 0, 0, 0.089);
+    background-color: rgba(53, 53, 53, 0.301);
+}
+
+.card-1 {
+    margin-top: -2cm;
+}
+
+#test {
+    background-image: url(https://images.assetsdelivery.com/compings_v2/acucucu/acucucu1606/acucucu160600357.jpg);
+    background-color: rgb(119, 0, 0);
+    object-fit: cover;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.card-2 {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.144), 0 15px 12px rgba(0, 0, 0, 0.089);
+    max-width: 25rem;
+    max-height: 9rem;
+    background-color: rgba(180, 180, 180, 0.411);
+}
+
+.card-3 {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.144), 0 15px 12px rgba(0, 0, 0, 0.089);
+    max-width: 25rem;
+    max-height: 9rem;
+    background-color: rgba(180, 180, 180, 0.411);
+}
+
+.card4 {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    box-shadow: 0 19px 38px rgba(36, 36, 36, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    min-width: 35rem;
+    min-height: 20rem;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.877), rgba(189, 189, 189, 0.616));
+    margin-left: 90px;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.btn {
+    background: rgba(48, 48, 48, 0.856);
+    width: 150px;
+    padding: 2px 0;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-color: rgba(0, 0, 0, 0.041);
+}
+
+.btn:hover {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    border-color: rgba(63, 48, 88, 0);
+}
+
+.btn {
+    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
+}
+
+.btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
+}
+
+.card1:hover {
+    background-color: #1b1b1bcb;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 19px 38px rgba(5, 5, 5, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    margin-top: 15px;
+    transform: scale(1.05);
+    background-image: linear-gradient(rgba(78, 169, 255, 0.63), rgba(255, 255, 255, 0.63));
+}
+
+#MenuCard {
+    margin-left: 0px;
+}
+
+#logoImage {
+    position: fixed;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#homeButton1 {
+    position: fixed;
+    top: 33.5%;
+    left: 39.5%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#homeButton2 {
+    position: fixed;
+    top: 33.5%;
+    left: 60.6%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#homeButton3 {
+    position: fixed;
+    top: 33.5%;
+    left: 70.5%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+#homeButton4 {
+    position: fixed;
+    top: 33.5%;
+    left: 29.55%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: rgba(158, 158, 158, 0.527);
+    margin: auto;
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto
+}
+
+#footer {
+    background: rgba(48, 48, 48, 0.856);
+    color: rgb(255, 255, 255);
+    height: 4cm;
+    clip-path: polygon(25% 20%, 75% 20%, 100% 0, 100% 100%, 0 100%, 0 0);
+    z-index: 9998;
+    padding: 0%;
+}
+
+#footer2 {
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    color: white;
+    position: absolute;
+}
+
+a {
+    color: inherit;
+}
