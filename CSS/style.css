@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(202, 202, 202, 0.596);
+    background-color: rgb(255, 255, 255);
     background-blend-mode: color;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -24,7 +24,7 @@ nav {
     background-size: cover;
     background-position: 0px 55%;
     background-blend-mode: color;
-    clip-path: polygon(0 0, 100% 0, 100% 74%, 75% 59%, 25% 59%, 0 74%);
+    clip-path: polygon(0 0, 100% 0, 100% 64%, 75% 63%, 25% 63%, 0 64%);
     top: 0;
     z-index: 9998;
     position: sticky;
@@ -91,30 +91,22 @@ nav {
 }
 
 .btn {
-    background: rgba(48, 48, 48, 0.856);
-    width: 150px;
-    padding: 2px 0;
-    border-radius: 8px;
-    text-align: center;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    border: 0.5px solid black;
+    background-color: white;
+    color: black;
+    padding: 3px 28px;
+    font-size: 16px;
     cursor: pointer;
-    border-color: rgba(0, 0, 0, 0.041);
+    width: 150px;
+    border-radius: 0px;
+    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
 }
 
 .btn:hover {
     background-color: #000000;
     color: rgb(255, 255, 255);
-    border-color: rgba(63, 48, 88, 0);
-}
-
-.btn {
-    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
-}
-
-.btn:hover {
-    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
+    border-color: rgba(75, 75, 75, 0.356);
+    transition: background 0.9s ease-in-out
 }
 
 .card1:hover {
@@ -170,6 +162,10 @@ nav {
     z-index: 9999;
 }
 
+#registreerbutton {
+    max-height: 35px;
+}
+
 .jumbotron {
     text-align: center;
     background-color: rgba(158, 158, 158, 0.527);
@@ -187,21 +183,141 @@ nav {
     background: rgba(48, 48, 48, 0.856);
     color: rgb(255, 255, 255);
     height: 4cm;
-    clip-path: polygon(25% 20%, 75% 20%, 100% 0, 100% 100%, 0 100%, 0 0);
     z-index: 9998;
     padding: 0%;
+    position: fixed;
+    margin-bottom: 50px;
 }
 
 #footer2 {
     position: fixed;
-    top: 70%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    color: white;
+    color: rgb(0, 0, 0);
     position: absolute;
+    padding: 15px;
+    background: #f0efefbd;
+    border: 1px solid #aaa;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
 }
 
 a {
     color: inherit;
+}
+
+h5 {
+    animation: fadeIn 7s;
+    -webkit-animation: fadeIn 7s;
+    -moz-animation: fadeIn 7s;
+    -o-animation: fadeIn 7s;
+    -ms-animation: fadeIn 7s;
+}
+
+#homepagetext {
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+    font-size: 1.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 1em;
+    padding-left: 340px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#georgypasta {
+    position: center;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    margin-top: 120px;
+}
+
+#loginForm {
+    padding: 15px;
+    background: #f0efefbd;
+    border: 1px solid #aaa;
+    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
+}
+
+#loginForm2 {
+    padding: 15px;
+    background: #f0efefbd;
+    border: 1px solid #aaa;
+    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
+    max-height: 105px;
+}
+
+#loginForm label,
+#loginForm input,
+#loginForm select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+#loginForm input[type="submit"] {
+    background: #000000;
+    color: #fff;
+    border: 0;
+    padding: 15px 0;
+    margin-top: 15px;
+    cursor: pointer;
 }
