@@ -1,5 +1,6 @@
 <head>
 <link href="./CSS/tabletpage.css" rel="stylesheet">
+<link href="./CSS/productenpage.css" rel="stylesheet">
 </head>
 <body>
 <?php 
