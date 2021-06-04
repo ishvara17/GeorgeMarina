@@ -61,6 +61,7 @@ function pre_r($array){
 
 <div class="card" id="blank" style="width: 18rem;">
   <div class="card-body">
+  <a href="index.php?content=homepage" id="homeButtontablet" class="btn btn-outline stretched-link"><b>Home</b></a>
   </div>
 </div>
 
@@ -83,7 +84,7 @@ if ($result){
         while($product = mysqli_fetch_assoc($result)){
         ?>
         <div class="col-sm-4 col-md-4 Scard" id="tablet">
-            <form method="post" action="index.php?content=productenpage&action=add&id=<?php echo $product['id'];?>">
+            <form method="post" action="index.php?content=tabletpage&action=add&id=<?php echo $product['id'];?>">
                 <div class="products" id="testproduct">
                     <img src="<?php echo $product['Image'];?>" class="img-responsive" id="imageProduct">
                     <h4 class="text-info"><?php echo $product['Naam']; ?></h4>

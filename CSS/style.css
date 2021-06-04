@@ -115,7 +115,7 @@ nav {
     box-shadow: 0 19px 38px rgba(5, 5, 5, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     margin-top: 15px;
     transform: scale(1.05);
-    background-image: linear-gradient(rgba(78, 169, 255, 0.63), rgba(255, 255, 255, 0.63));
+    background-image: linear-gradient(rgba(136, 136, 136, 0.63), rgba(255, 255, 255, 0.63));
 }
 
 #MenuCard {
@@ -160,6 +160,18 @@ nav {
     left: 29.55%;
     transform: translate(-50%, -50%);
     z-index: 9996;
+}
+
+#homeButtontablet {
+    top: 33.5%;
+    left: 29.55%;
+    transform: translate(-50%, -50%);
+    z-index: 9996;
+    margin-left: 3%;
+}
+
+#bestelButtontablet {
+    transform: translate(-50%, -50%);
 }
 
 #registreerbutton {

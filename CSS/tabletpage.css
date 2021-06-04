@@ -13,6 +13,37 @@
     position: fixed
 }
 
+#blank2 {
+    min-height: 40%;
+    min-width: 100%;
+    padding: 15px;
+    color: rgb(36, 36, 36);
+    background: #464646;
+    border: 1px solid rgb(85, 85, 85);
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 12px 16px 0 rgba(107, 107, 107, 0.24), 0 17px 50px 0 rgba(83, 83, 83, 0.19);
+    z-index: 9997;
+    top: 0;
+    position: fixed
+}
+
 #tablet {
     z-index: 9998;
+}
+
+#bestelButtontablet {
+    transform: translate(-50%, -50%);
+}
+
+.card1 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    box-shadow: 0 19px 38px rgba(36, 36, 36, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    min-width: 35rem;
+    min-height: 16rem;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.877), rgba(189, 189, 189, 0.616));
+    margin-left: 90px;
+    text-align: center;
+    transition: 0.4s;
 }
