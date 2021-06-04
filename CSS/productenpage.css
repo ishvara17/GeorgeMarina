@@ -1,0 +1,40 @@
+#testproduct {
+    background-color: black;
+    box-shadow: 0 19px 38px rgba(36, 36, 36, 0.171), 0 15px 12px rgba(0, 0, 0, 0.151);
+}
+
+#imageProduct {
+    background-image: linear-gradient(to bottom, rgba(94, 94, 94, 0.52), rgba(231, 139, 86, 0.349));
+    background-size: cover;
+    width: 350px;
+}
+
+h4 {
+    color: rgb(255, 255, 255);
+}
+
+#btnproduct {
+    border: 0.5px solid black;
+    background-color: white;
+    color: black;
+    padding: 3px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#btnproduct:hover {
+    border: 0.5px solid rgb(165, 165, 165);
+    background-color: rgb(0, 0, 0);
+    color: rgb(248, 248, 248);
+    padding: 3px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
