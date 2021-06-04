@@ -1,6 +1,5 @@
 <head>
 <link href="./CSS/tabletpage.css" rel="stylesheet">
-<link href="./CSS/productenpage.css" rel="stylesheet">
 </head>
 <body>
 <?php 
@@ -89,10 +88,9 @@ if ($result){
                     <img src="<?php echo $product['Image'];?>" class="img-responsive" id="imageProduct">
                     <h4 class="text-info"><?php echo $product['Naam']; ?></h4>
                     <p class="text-info"><?php echo $product['Beschrijving']; ?></p>
-                    <h4>€ <?php echo $product['Prijs']; ?></h4>
                     <input type="text" name="quantity" class="form-control" value="1">
                     <input type="hidden" name="name" value="<?php echo $product['Categorie'];?>">
-                    <input type="hidden" name="name" value="<?php echo $product['Naam'];?>"> 
+                    <input type="hidden" name="name" value="<?php echo $product['Naam'];?>">
                     <input type="hidden" name="price" value="<?php echo $product['Prijs'];?>">
                     <br>
                     <input id="btnproduct" type="submit" name="add_to_cart" class="btn btrn_info btn-dark" value="Add to Cart">

@@ -12,7 +12,7 @@
   <p>
     <h1><b>Home</b></h1>
   </p>
-  <a href="index.php?content=studentLogin" class="btn btn-primary stretched-link"><b>Login</b></a>
+  <a href="index.php?content=studentLogin" class="btn stretched-link"></a>
   </div>
 </div>
     </div>
