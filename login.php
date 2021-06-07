@@ -14,7 +14,7 @@
           <small id="passwordHelp" class="form-text text-muted">Pas op voor meekijkers tijdens het invoeren...</small>
         </div>
         
-        <button type="submit" class="btn btn-danger btn-lg btn-block mt-4">Log in</button>
+        <button type="submit" class="btn btn-lg btn-block mt-4">Log in</button>
       </form>
 
     </div>

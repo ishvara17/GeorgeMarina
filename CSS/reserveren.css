@@ -35,15 +35,10 @@
     
     div.ok {
         background: #9cffbb;
-        border: 1px solid #1ca526;
+        border: 1px solid #000000;
     }
     
     div.err {
         background: #ffe0e0;
-        border: 1px solid #bb1919;
-    }
-    
-    html,
-    body {
-        font-family: arial, sans-serif;
+        border: 1px solid #050505;
     }

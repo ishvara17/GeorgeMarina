@@ -26,8 +26,8 @@ anime.timeline({ loop: true })
         targets: '.ml4 .letter',
         opacity: [0, 1],
         easing: "easeInOutQuad",
-        duration: 3650,
-        delay: (el, i) => 150 * (i + 1)
+        duration: 3950,
+        delay: (el, i) => 160 * (i + 1)
     }).add({
         targets: '.ml4',
         translateY: [0, 0],

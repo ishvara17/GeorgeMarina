@@ -1,148 +1,166 @@
-<head>
-<link href="./CSS/productenpage.css" rel="stylesheet">
-</head>
-<body>
-<?php 
-
-$product_ids = array();
-//session_destroy();
-
-if(filter_input(INPUT_POST, 'add_to_cart')){
-    if(isset($_SESSION['shopping_cart'])){
-        $count = count($_SESSION['shopping_cart']);
-        $product_ids = array_column($_SESSION['shopping_cart'], 'id');
-
-        if (!in_array(filter_input(INPUT_GET, 'id'), $product_ids)){
-            $_SESSION['shopping_cart'][$count] = array
-            (
-            'id' => filter_input(INPUT_GET, 'id'),
-            'name' => filter_input(INPUT_POST, 'name'),
-            'price' => filter_input(INPUT_POST, 'price'),
-            'quantity' => filter_input(INPUT_POST, 'quantity')
-            );
-        }
-        else {
-            for ($i = 0; $i < count($product_ids); $i++){
-                if ($product_ids[$i] == filter_input(INPUT_GET, 'id')){
-                    $_SESSION['shopping_cart'][$i]['quantity'] += filter_input(INPUT_POST, 'quantity');
-                }
-            }
-        }
-    }
-    else { 
-        $_SESSION['shopping_cart'][0] = array
-        (
-            'id' => filter_input(INPUT_GET, 'id'),
-            'name' => filter_input(INPUT_POST, 'name'),
-            'price' => filter_input(INPUT_POST, 'price'),
-            'quantity' => filter_input(INPUT_POST, 'quantity')
-        );
-    }
-}
-
-if(filter_input(INPUT_GET, 'action') == 'delete'){
-    foreach($_SESSION['shopping_cart'] as $key => $product){
-        if ($product['id'] == filter_input(INPUT_GET, 'id')){
-            unset($_SESSION['shopping_cart'][$key]);
-        }
-    }
-    $_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
-}
-//pre_r($_SESSION);
-
-function pre_r($array){
-    echo '<pre>';
-    print_r($array);
-    echo '</pre>';
-}
-?>
-
-<div class="container">
-    <div class="row">
 <?php
+require_once("config.php");
 
-define("SERVERNAME", "localhost");
-define("USERNAME", "root");
-define("PASSWORD", "");
-define("DATABASENAME", "georgemarina");
+if (!isset($_SESSION["id"])){
+	header("location: ./index.php?content=message&alert=auth-error");
+}
 
-$conn = mysqli_connect(SERVERNAME, USERNAME, PASSWORD, DATABASENAME);
-$query = 'SELECT * FROM maaltijden ORDER by id ASC';
+//code for Cart
+if(!empty($_GET["action"])) {
+switch($_GET["action"]) {
+	//code for adding product in cart
+	case "add":
+		if(!empty($_POST["quantity"])) {
+			$pid=$_GET["pid"];
+			$result=mysqli_query($con,"SELECT * FROM gerechten WHERE id='$pid'");
+	          while($productByCode=mysqli_fetch_array($result)){
+			$itemArray = array($productByCode["code"]=>array('name'=>$productByCode["name"], 'category'=>$productByCode["category"], 'description'=>$productByCode["description"], 'code'=>$productByCode["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode["price"], 'image'=>$productByCode["image"]));
+			if(!empty($_SESSION["cart_item"])) {
+				if(in_array($productByCode["code"],array_keys($_SESSION["cart_item"]))) {
+					foreach($_SESSION["cart_item"] as $k => $v) {
+							if($productByCode["code"] == $k) {
+								if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+									$_SESSION["cart_item"][$k]["quantity"] = 0;
+								}
+								$_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+							}
+					}
+				} else {
+					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+				}
+			}  else {
+				$_SESSION["cart_item"] = $itemArray;
+			}
+		}
+	}
+	break;
 
-$result = mysqli_query($conn, $query);
-
-if ($result){
-    if(mysqli_num_rows($result)>0){
-        while($product = mysqli_fetch_assoc($result)){
-        ?>
-        <div class="col-sm-4 col-md-4 Scard" id="">
-            <form method="post" action="index.php?content=productenpage&action=add&id=<?php echo $product['id'];?>">
-                <div class="products" id="testproduct">
-                    <img src="<?php echo $product['Image'];?>" class="img-responsive" id="imageProduct">
-                    <h4 class="text-info"><?php echo $product['Naam']; ?></h4>
-                    <p class="text-info"><?php echo $product['Beschrijving']; ?></p>
-                    <h4>€ <?php echo $product['Prijs']; ?></h4>
-                    <input type="text" name="quantity" class="form-control" value="1">
-                    <input type="hidden" name="name" value="<?php echo $product['Categorie'];?>">
-                    <input type="hidden" name="name" value="<?php echo $product['Naam'];?>"> 
-                    <input type="hidden" name="price" value="<?php echo $product['Prijs'];?>">
-                    <br>
-                    <input id="btnproduct" type="submit" name="add_to_cart" class="btn btrn_info btn-dark" value="Add to Cart">
-                </div>
-            </form>
-        </div>
-        <?php
-        }
-    }
+	// code for removing product from cart
+	case "remove":
+		if(!empty($_SESSION["cart_item"])) {
+			foreach($_SESSION["cart_item"] as $k => $v) {
+					if($_GET["code"] == $k)
+						unset($_SESSION["cart_item"][$k]);				
+					if(empty($_SESSION["cart_item"]))
+						unset($_SESSION["cart_item"]);
+			}
+		}
+	break;
+	// code for if cart is empty
+	case "empty":
+		unset($_SESSION["cart_item"]);
+	break;	
+}
 }
 ?>
-    <div style="clear:both"></div>
-    <br> 
-    <div class="table-responsive">
-    <table class="table">
-    <tr id="ShoppingCard"><th colspan="5"><h3>Order Details</h3></th></tr>
-    <tr id="ShoppingCard">
-        <th width="25%">Maaltijd Naam</th>
-        <th width="15%">Categorie</th>
-        <th width="10%">Hoeveelheid</th>
-        <th width="20%">Prijs</th>    
-        <th width="15%">Totaal bedrag</th>    
-    </tr>
-    <?php
-    if(!empty($_SESSION['shopping_cart'])):
-        $total = 0;
-
-        foreach($_SESSION['shopping_cart'] as $key => $product):
-    ?>
-    <tr id="ShoppingCard">
-            <td><?php echo $product['name']; ?></td>
-            <td><?php echo $product['quantity']; ?></td>
-            <td><?php echo $product['price']; ?></td>
-            <td><?php echo number_format($product['quantity'] * $product['price'], 2); ?></td>
-            <td> <a href="./index.php?content=productenpage&action=delete&id=<?php echo $product['id'];?>">
-                    <div class="btn-dark">Verwijderen</div>                
-                </a>
-                
-            </td>
-    </tr>
-
-    <?php 
-            $total =  $total + ($product['quantity'] * $product['price']);
-        endforeach;
-    ?>
-    <tr id="ShoppingCard">
-        <td colspan="3" id="total" align="right">Totaal</td>
-        <td align="right"><?php echo number_format($total, 2); ?></td>
-        <td></td>
-    </tr>
+<HTML>
+<HEAD>
+<link href="style.css" type="text/css" rel="stylesheet" />
+<head>
+<link href="./CSS/tabletpage.css" rel="stylesheet">
+</head>
+</HEAD>
+<BODY>
 
 
-    </div>
-    <?php 
-    endif;
-    ?>
-    </table>
-    </div>
-    </div>
+<!-- Cart ---->
+<div id="shopping-cart">
+<div class="txt-heading">Bestelling</div>
+
+<a id="btnEmpty" href="index.php?content=productenpage&action=empty">Alles verwijderen</a>
+
+<?php
+if(isset($_SESSION["cart_item"])){
+    $total_quantity = 0;
+    $total_price = 0;
+?>	
+
+
+
+<table class="tbl-cart" cellpadding="10" cellspacing="1">
+<tbody>
+<tr>
+<th style="text-align:left;">Naam</th>
+<th style="text-align:center;" width="5%">Code</th>
+<th style="text-align:center;" width="10%">categorie</th>
+<th style="text-align:center;" width="30%">Beschrijving</th>
+<th style="text-align:right;" width="5%">Hoeveelheid</th>
+<th style="text-align:right;" width="10%">Totaal</th>
+<th style="text-align:right;" width="10%">Prijs</th>
+<th style="text-align:center;" width="5%">Verwijderen</th>
+</tr>	
+<?php		
+    foreach ($_SESSION["cart_item"] as $item){
+        $item_price = $item["quantity"]*$item["price"];
+		?>
+				<tr>
+				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" /><?php echo $item["name"]; ?></td>
+				<td><?php echo $item["code"]; ?></td>
+                <td><?php echo $item["category"]; ?></td>
+                <td><?php echo $item["description"]; ?></td>
+				<td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+				<td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
+				<td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
+				<td style="text-align:center;"><a href="index.php?content=productenpage&action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="./img/icon-delete.png" alt="Remove Item" /></a></td>
+				</tr>
+				<?php
+				$total_quantity += $item["quantity"];
+				$total_price += ($item["price"]*$item["quantity"]);
+		}
+		?>
+
+<tr>
+<td colspan="2" align="right">Total:</td>
+<td align="right"><?php echo $total_quantity; ?></td>
+<td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
+<td></td>
+<a id="btnEmpty" href="index.php?content=verzonden" class="btn btn-lg active" role="button" aria-pressed="true">Checkout</a>
+</tr>
+</tbody>
+</table>		
+  <?php
+  
+} else {
+?>
+<div class="no-records">Uw lijst is leeg</div>
+<?php 
+}
+?>
 </div>
-</body>
+
+
+
+
+<div id="product-grid">
+	<div class="txt-heading">Gerechten</div>
+	<?php
+	$product= mysqli_query($con,"SELECT * FROM gerechten ORDER BY id ASC");
+	if (!empty($product)) { 
+		while ($row=mysqli_fetch_array($product)) {
+		
+	?>
+		<div class="product-item" id="imageproduct">
+			<form method="post" action="index.php?content=productenpage&action=add&pid=<?php echo $row["id"]; ?>">
+			<div class="product-image"><img src="<?php echo $row["image"]; ?>"></div>
+			<div class="product-tile-footer">
+			<div class="product-title"><?php echo $row["name"]; ?></div>
+            <div class="product-description"><i><?php echo $row["description"]; ?></i></div>
+            <div class="product-category"><b><?php echo $row["category"]; ?></b></div>
+			<div class="product-price"><?php echo "$".$row["price"]; ?></div>
+			<div class="cart-action"><input type="text" class="product-quantity" name="quantity" value="1" size="2" /><input type="submit" value="Toevoegen" class="btnAddAction" /></div>
+			</div>
+			</form>
+		</div>
+	<?php
+		}
+	}  else {
+ echo "No Records.";
+
+	}
+	?>
+</div>
+
+
+
+</BODY>
+</HTML>
