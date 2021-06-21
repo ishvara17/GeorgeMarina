@@ -2,6 +2,7 @@
  if (!(isset($_GET["content"]) && isset($_GET["id"]) && isset($_GET["pwh"]))){
   header("Location: ./index.php?content=message&alert=hacker-alert");
  }
+ // Check of de gebruiker de benodigde rechten heeft voor deze pagina
 ?>
 
 <div class="container mt-5">

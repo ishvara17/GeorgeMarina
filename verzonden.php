@@ -2,7 +2,7 @@
   <div class="jumbotron" id="container">
     <h1>Uw Bestelling is verzonden.</h1>
     <br>
-    <p>Bedankt voor uw bestelling! Deze zal zo snel mogelijk bezorgd worden.</p>
+    <p>Bedankt voor uw bestelling!</p>
     <p>Met vriendelijke groet,</p>
     <p>GeorgeHollywood.nl</p>
 </div>

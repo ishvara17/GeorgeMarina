@@ -5,10 +5,10 @@ if (!isset($_SESSION["id"])){
 	header("location: ./index.php?content=message&alert=auth-error");
 }
 
-//code for Cart
+//cart
 if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
-	//code for adding product in cart
+	//product aan cart toevoegen
 	case "add":
 		if(!empty($_POST["quantity"])) {
 			$pid=$_GET["pid"];
@@ -35,7 +35,7 @@ switch($_GET["action"]) {
 	}
 	break;
 
-	// code for removing product from cart
+	// Product verwijderen
 	case "remove":
 		if(!empty($_SESSION["cart_item"])) {
 			foreach($_SESSION["cart_item"] as $k => $v) {
@@ -46,7 +46,7 @@ switch($_GET["action"]) {
 			}
 		}
 	break;
-	// code for if cart is empty
+	// cart is leeg
 	case "empty":
 		unset($_SESSION["cart_item"]);
 	break;	

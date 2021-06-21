@@ -1,18 +1,18 @@
 <?php
-// (A) GET ALL RESERVATIONS
+// (A) krijg alle reserveringen
 require "reserveren.php";
 $all = $_RSV->getDay();
 
-// (B) OUTPUT CSV
+// output
 header('Content-Type: text/csv');
 header('Content-Disposition: attachment;filename=reservations.csv');
 if (count($all)==0) { echo "No reservations"; }
 else {
-  // (B1) FIRST ROW - HEADERS
+  // headers op eerste row
   foreach ($all[0] as $k=>$v) { echo "$k,"; }
   echo "\r\n";
   
-  // (B2) RESERVATION DETAILS
+  // reserveer-details
   foreach ($all as $r) { 
     foreach ($r as $k=>$v) { echo "$v,"; }
     echo "\r\n";

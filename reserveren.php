@@ -1,11 +1,11 @@
 <?php
 class Reservation {
-  // (A) PROPERTIES
+  // Properties
   private $pdo; // PDO object
   private $stmt; // SQL statement
   public $error; // Error message
 
-  // (B) CONSTRUCTOR - CONNECT TO DATABASE
+  // Verbind met database
   function __construct() {
     try {
       $this->pdo = new PDO(
@@ -15,21 +15,17 @@ class Reservation {
     } catch (Exception $ex) { die($ex->getMessage()); }
   }
 
-  // (C) DESTRUCTOR - CLOSE DATABASE CONNECTION
+  // Stop verbinding van database
   function __destruct() {
     $this->pdo = null;
     $this->stmt = null;
   }
 
-  // (D) SAVE RESERVATION
+  // Reservering opslaan
   function save ($date, $slot, $name, $email, $tel, $notes="") {
-    // (D1) CHECKS & RESTRICTIONS
-    // @TODO - ADD YOUR OWN RULES & REGULATIONS HERE
-    // MAX # OF RESERVATIONS ALLOWED?
-    // USER CAN ONLY BOOK X DAYS IN ADVANCE?
-    // USER CAN ONLY BOOK A MAX OF X SLOTS WITHIN Y DAYS?
 
-    // (D2) DATABASE ENTRY
+
+    // Database input
     try {
       $this->stmt = $this->pdo->prepare(
         "INSERT INTO `reservations` (`res_date`, `res_slot`, `res_name`, `res_email`, `res_tel`, `res_notes`) VALUES (?,?,?,?,?,?)"
@@ -40,21 +36,20 @@ class Reservation {
       return false;
     }
 
-    // (D3) EMAIL
-    // @TODO - REMOVE IF YOU WANT TO MANUALLY CALL TO CONFIRM OR SOMETHING
-    // OR EMAIL THIS TO A MANAGER OR SOMETHING
-    $subject = "Reservation Received";
-    $message = "Thank you, we have received your request and will process it shortly.";
+    // Email
+
+    $subject = "Reservering opgeslagen";
+    $message = "Uw bestelling zal zo spoedig mogelijk worden afgeleverd";
     @mail($email, $subject, $message);
     return true;
   }
   
-  // (E) GET RESERVATIONS FOR THE DAY
+  // Haal reserveringen op
   function getDay ($day="") {
-    // (E1) DEFAULT TO TODAY
+    
     if ($day=="") { $day = date("Y-m-d"); }
     
-    // (E2) GET ENTRIES
+    
     $this->stmt = $this->pdo->prepare(
       "SELECT * FROM `reservations` WHERE `res_date`=?"
     );
@@ -63,13 +58,12 @@ class Reservation {
   }
 }
 
-// (F) DATABASE SETTINGS
-// ! CHANGE THESE TO YOUR OWN !
+// Database instellingen
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'georgemarina');
 define('DB_CHARSET', 'utf8');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 
-// (G) NEW RESERVATION OBJECT
+// Nieuwe reservering-object
 $_RSV = new Reservation();

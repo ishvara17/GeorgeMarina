@@ -9,7 +9,7 @@
   </head>
   <body>
     <?php
-    // (A) PROCESS RESERVATION
+    // Reserveer proces-bericht
     if (isset($_POST['date'])) {
       require "reserveren.php";
       if ($_RSV->save(
@@ -20,7 +20,7 @@
     }
     ?>
 
-    <!-- (B) RESERVATION FORM -->
+    <!-- Reserveer form -->
     <h1></h1>
     <form id="resForm" method="post" target="_self">
       <label for="res_name">Volledige naam</label>
@@ -38,7 +38,7 @@
         <option value="AM">Lunch</option>
         <option value="PM">Diner</option>
       </select>
-      <input type="submit" value="Submit" id="submit"/>
+      <input type="submit" value="Verstuur" id="submit"/>
     </form>
     <br>
   </body>

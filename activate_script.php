@@ -26,10 +26,10 @@
       } else {
 
         if ( !strcmp($record["password"], $pwh)) {
-          // 1. Maak een passwordhash voor het nieuw gekozen wachtwoord
+          // Maak een passwordhash voor het nieuw gekozen wachtwoord
           $password_hash = password_hash($password, PASSWORD_BCRYPT);
     
-          // 2. Ga het record updaten met het nieuw gekozen gehashte wachtwoord
+          // Update de record met het nieuw gekozen gehashte wachtwoord
           $sql = "UPDATE `register` 
                   SET    `password` = '$password_hash',
                          `activated`= 1 
@@ -50,7 +50,7 @@
       }
       
       
-      // 3. Geef de gebruiker feedback met een alert dat het updaten is gelukt of niet en stuur dan door naar een andere pagina.
+      // Geef de gebruiker feedback met een alert dat het updaten is gelukt of niet en stuur dan door naar een andere pagina.
     } else {
       // foutmelding
       header("Location: ./index.php?content=message&alert=no-id-pwh-match");
